@@ -8,7 +8,7 @@ data "aws_internet_gateway" "igw" {
 ### Public Subnet, Nat and Route Tables
 resource "aws_subnet" "public_subnet" {
   count             = var.az_count
-  cidr_block        = cidrsubnet(data.aws_vpc.main.cidr_block, 8, count.index + var.az_count + 10)
+  cidr_block        = coalesce(var.public_cidr_block, cidrsubnet(data.aws_vpc.main.cidr_block, var.newbits, count.index + var.netnum_offset))
   availability_zone = data.aws_availability_zones.available.names[count.index]
   vpc_id            = data.aws_vpc.main.id
   tags              = { Name = "Public ${data.aws_availability_zones.available.names[count.index]}" }
