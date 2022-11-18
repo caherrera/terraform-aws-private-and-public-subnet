@@ -38,8 +38,9 @@ No modules.
 | <a name="input_netnum_offset"></a> [netnum\_offset](#input\_netnum\_offset) | Offset for separate private and public subnets | `number` | `20` | no |
 | <a name="input_newbits"></a> [newbits](#input\_newbits) | n/a | `number` | `8` | no |
 | <a name="input_private_cidr_block"></a> [private\_cidr\_block](#input\_private\_cidr\_block) | n/a | `string` | `""` | no |
+| <a name="input_private_tags"></a> [private\_tags](#input\_private\_tags) | n/a | `map` | `{}` | no |
 | <a name="input_public_cidr_block"></a> [public\_cidr\_block](#input\_public\_cidr\_block) | n/a | `string` | `""` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | n/a | `map` | `{}` | no |
+| <a name="input_public_tags"></a> [public\_tags](#input\_public\_tags) | n/a | `map` | `{}` | no |
 | <a name="input_use_nat"></a> [use\_nat](#input\_use\_nat) | n/a | `bool` | `false` | no |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | n/a | `any` | n/a | yes |
 

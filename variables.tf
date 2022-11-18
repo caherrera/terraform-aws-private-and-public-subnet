@@ -12,7 +12,11 @@ variable "name" {
   default = "project"
 }
 
-variable "tags" {
+variable "public_tags" {
+  default = {}
+}
+
+variable "private_tags" {
   default = {}
 }
 
@@ -30,7 +34,7 @@ variable "newbits" {
 
 variable "netnum_offset" {
   description = "Offset for separate private and public subnets"
-  default = 20
+  default     = 20
 }
 
 variable "vpc_id" {
