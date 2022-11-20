@@ -1,5 +1,5 @@
 data "aws_vpc" "main" {
-  tags = { Name = "Safe Trice VPC" }
+  id = var.vpc_id
 
 }
 
