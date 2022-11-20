@@ -1,7 +1,12 @@
 ### Private Subnet, Nat and Route Tables
+locals {
+  private_netnum_offset = coalesce(var.netnum_offset, var.private_netnum_offset )
+  private_extra_offset  = var.netnum_offset !=null ? var.az_count : 0
+
+}
 resource "aws_subnet" "private_subnet" {
   count             = var.az_count
-  cidr_block        = coalesce(var.private_cidr_block, cidrsubnet(data.aws_vpc.main.cidr_block, var.newbits, count.index+var.netnum_offset))
+  cidr_block        = coalesce(var.private_cidr_block, cidrsubnet(data.aws_vpc.main.cidr_block, var.newbits, count.index + local.private_netnum_offset + local.private_extra_offset))
   availability_zone = data.aws_availability_zones.available.names[count.index]
   vpc_id            = data.aws_vpc.main.id
   tags              = merge({

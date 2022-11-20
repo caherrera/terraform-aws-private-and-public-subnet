@@ -34,6 +34,16 @@ variable "newbits" {
 
 variable "netnum_offset" {
   description = "Offset for separate private and public subnets"
+  default     = null
+}
+
+variable "private_netnum_offset" {
+  description = "Offset for private subnets"
+  default     = 120
+}
+
+variable "public_netnum_offset" {
+  description = "Offset for public subnets"
   default     = 20
 }
 
