@@ -5,6 +5,16 @@ data "aws_internet_gateway" "igw" {
   }
 }
 
+resource "aws_internet_gateway" "igw" {
+  count = data.aws_internet_gateway.igw.count ==0 ? 1 : 0
+}
+
+resource "aws_internet_gateway_attachment" "igw-vpc" {
+  count               = data.aws_internet_gateway.igw.count ==0 ? 1 : 0
+  internet_gateway_id = aws_internet_gateway.igw.id
+  vpc_id              = data.aws_vpc.main.id
+}
+
 locals {
   public_netnum_offset = coalesce(var.netnum_offset, var.public_netnum_offset )
   public_extra_offset  = 0
