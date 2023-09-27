@@ -33,7 +33,7 @@ resource "aws_subnet" "public_subnet" {
 
 resource "aws_eip" "nat" {
   count = local.count_with_nat
-  domain   = "vpc"
+#  domain   = "vpc"
   tags  = { Name = "ngw-eip-${aws_subnet.public_subnet[count.index].availability_zone}" }
 
 }
