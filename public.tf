@@ -10,8 +10,8 @@ resource "aws_internet_gateway" "igw" {
 }
 
 resource "aws_internet_gateway_attachment" "igw-vpc" {
-  count               = data.aws_internet_gateway.igw.count ==0 ? 1 : 0
-  internet_gateway_id = aws_internet_gateway.igw.id
+  count               = length(data.aws_internet_gateway.igw) ==0 ? 1 : 0
+  internet_gateway_id = aws_internet_gateway.igw[0].id
   vpc_id              = data.aws_vpc.main.id
 }
 
@@ -33,7 +33,7 @@ resource "aws_subnet" "public_subnet" {
 
 resource "aws_eip" "nat" {
   count = local.count_with_nat
-  vpc   = true
+  domain   = "vpc"
   tags  = { Name = "ngw-eip-${aws_subnet.public_subnet[count.index].availability_zone}" }
 
 }
