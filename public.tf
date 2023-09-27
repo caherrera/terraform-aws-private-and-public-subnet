@@ -6,7 +6,7 @@ data "aws_internet_gateway" "igw" {
 }
 
 resource "aws_internet_gateway" "igw" {
-  count = data.aws_internet_gateway.igw.count ==0 ? 1 : 0
+  count = length(data.aws_internet_gateway.igw) ==0 ? 1 : 0
 }
 
 resource "aws_internet_gateway_attachment" "igw-vpc" {
